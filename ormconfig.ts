@@ -1,25 +1,23 @@
 import * as dotenv from 'dotenv';
 
-
 dotenv.config();
 export = {
-  type: 'postgres',
-  host: 'localhost',
-  port: '5432',
-  username: 'postgres',
-  password: '123456',
-  database: 'test_migration',
+  type: process.env.DB_TYPE || 'postgres',
+  host: process.env.DB_HOST || 'localhost',
+  port: process.env.DB_PORT || 5432,
+  username: process.env.DB_USERNAME || 'postgres',
+  password: process.env.DB_PASSWORD || 'postgres',
+  database: process.env.DB_NAME || 'regtech',
 
   entities: ['src/**/*.entity{.ts,.js}'],
   autoLoadEntities: true,
-  migrations: ["src/db/migrations/*{.js,.ts}"],
-  migrationsTableName: 'migration',
+  migrations: ['src/migrations/*{.js,.ts}'],
+  migrationsTableName: 'migrations',
   migrationsRun: true,
   synchronize: false,
   cli: {
-    migrationsDir: 'src/db/migrations',
+    migrationsDir: 'src/migrations',
     //           migrationsDir: 'src/db/migrations'
-
   },
   extra: {
     ssl:

@@ -1,14 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 import { Body } from '@nestjs/common/decorators';
 import { OpenAiService } from '../services/open-ai.service';
-import { OpenAiDto } from '../types/open-ai.dto';
+import { OpenAiDto } from '../dto/open-ai.dto';
+import { StoreSpecialistDto } from '../dto/store-specialist.dto';
 
 @Controller('open-ai')
 export class OpenAiController {
   constructor(private readonly services: OpenAiService) {}
 
-  @Get('chat-gpt')
-  async getHello(@Body() dto: OpenAiDto): Promise<any> {
-    return this.services.getOpenAi(dto);
+  @Post('store-specialist')
+  async storeSpecialist(@Body() dto: StoreSpecialistDto): Promise<any> {
+    return this.services.storeSpecialist(dto);
+  }
+  @Get('similarities')
+  async similarities(@Body() dto: OpenAiDto): Promise<any> {
+    return this.services.similarities(dto);
   }
 }
