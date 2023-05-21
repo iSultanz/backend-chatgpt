@@ -12,7 +12,7 @@ export class OpenAiController {
   async storeSpecialist(@Body() dto: StoreSpecialistDto): Promise<any> {
     return this.services.storeSpecialist(dto);
   }
-  @Get('similarities')
+  @Post('similarities')
   async similarities(@Body() dto: OpenAiDto): Promise<any> {
     return this.services.similarities(dto);
   }
