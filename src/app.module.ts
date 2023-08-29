@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { OpenAiModule } from './modules/open-ai/open-ai.module';
 import * as dotenv from 'dotenv';
+import { join } from 'path';
+import { OpenAiModule } from './modules/open-ai/open-ai.module';
 dotenv.config();
 
 @Module({
@@ -14,7 +14,7 @@ dotenv.config();
       username: process.env.DB_USERNAME || 'postgres',
       password: process.env.DB_PASSWORD || 'postgres',
       database: process.env.DB_NAME || 'regtech',
-      entities: ['./**/*.entity{.ts,.js}'],
+      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: false,
       migrationsRun: true,
       migrations: ['./migrations/**/*{.js,.ts}'],

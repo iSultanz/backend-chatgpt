@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import { join } from 'path';
 
 dotenv.config();
 export = {
@@ -9,7 +10,7 @@ export = {
   password: process.env.DB_PASSWORD || 'postgres',
   database: process.env.DB_NAME || 'regtech',
 
-  entities: ['src/**/*.entity{.ts,.js}'],
+  entities: [join(__dirname, '**', '*.entity.{ts,js}')],
   autoLoadEntities: true,
   migrations: ['src/migrations/*{.js,.ts}'],
   migrationsTableName: 'migrations',
